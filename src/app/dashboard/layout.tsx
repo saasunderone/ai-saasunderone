@@ -10,8 +10,8 @@ export default async function Dashboardlayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = await getCurrentUser();
-  ProtectedRoute();
+  // const user = await getCurrentUser();
+  // ProtectedRoute();
   return (
     <div>
       <Dashboard subscription={"PRO"}>

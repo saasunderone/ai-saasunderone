@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import Link from "next/link";
 import {
@@ -45,7 +45,7 @@ import {
 export default function Dashboard() {
   return (
     <div className="flex   w-full flex-col">
-   
+   ew
     </div>
   );
 }

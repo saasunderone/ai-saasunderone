@@ -373,7 +373,7 @@ export default function Dashboard({subscription,children}: DashboardProps) {
           </div>
           </div>
         </main> */}
-        <main className="flex flex-1 flex-col rounded-tl-3xl bg-muted/90  p-4 md:gap-8 md:p-1 lex  gap-4  lg:gap-6 lg:p-6 ">
+        <main className="flex flex-1 flex-col rounded-tl-3xl bg-muted/90  p-4 md:gap-8 md:p-1   gap-4  lg:gap-6 lg:p-6 h-screen">
         {/* <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden   md:block">
         <div className="flex h-full  flex-col gap-4 p-4 lg:gap-6 lg:p-6">
