@@ -410,27 +410,27 @@ import { Avatar, AvatarImage } from '@/components/ui/avatar';
                 Output
               </Badge>
               <div className="flex-1 scroll ">
-  <div className="grid gap-4 p-4 h-full max-h-screen overflow-y-auto ">
-    {messages.map((message, index) => (
-      <div key={index} className="flex flex-col gap-2 items-start">
-        <div className="flex items-center gap-2">
-          <Avatar>
-            <AvatarImage
-              src={`https://avatar.vercel.sh/${index}`}
-              alt={message.name}
-              className="size-8 rounded-full"
-            />
-          </Avatar>
-          <div>
-            <p className="font-medium">{message.name}</p>
-            <p className="text-sm text-muted-foreground">{message.role}</p>
-          </div>
-        </div>
-        <p className="text-base">{message.content}</p>
-      </div>
-    ))}
-  </div>
-</div>
+              <div className="grid gap-4 p-4  max-h-screen overflow-y-auto scroll">
+                {messages.map((message, index) => (
+                  <div key={index} className="flex flex-col gap-2 items-start">
+                    <div className="flex items-center gap-2">
+                      <Avatar>
+                        <AvatarImage
+                          src={`https://avatar.vercel.sh/${Math.floor(Math.random())}}`}
+                          alt={message.name}
+                          className="size-8 rounded-full"
+                        />
+                      </Avatar>
+                      <div>
+                        <p className="font-medium">{message.name}</p>
+                        <p className="text-sm text-muted-foreground">{message.role}</p>
+                      </div>
+                    </div>
+                    <p className="text-base">{message.content}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
 
               <form
                 onSubmit={handleSubmit}

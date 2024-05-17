@@ -42,11 +42,10 @@ model User {
   emailVerified          DateTime?
   image                  String?
   stripeCustomerId       String?   @unique
-  stripeSubscriptionId   String?   @unique 
-  stripePriceId          String?   
-  stripeCurrentPeriodEnd DateTime? 
+  credits                Int       @default(10)
   accounts               Account[]
   sessions               Session[]
+  chats                  Chat[]
 }
 
 model VerificationToken {
@@ -55,4 +54,32 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+enum UserSystem {
+  USER
+  ASSISTANT
+  
+}
+
+
+model Chat {
+  id    String    @id @default(cuid())
+  pdfName String
+  pdfUrl String
+  createdAt DateTime @default(now())
+  userId String
+  fileKey String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  messages Message[]
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  chatId    String
+  content   String
+  createdAt DateTime @default(now())
+  role      UserSystem
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
 }

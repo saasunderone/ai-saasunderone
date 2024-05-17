@@ -11,10 +11,10 @@ import { useSession } from "next-auth/react";
 import { Loader } from "lucide-react";
 
 type Props = {
-  isPro: boolean;
+  credits: number;
 };
 
-export default function ProfileForm({ isPro }: Props) {
+export default function ProfileForm({ credits }: Props) {
   const { data: session } = useSession();
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -41,25 +41,7 @@ export default function ProfileForm({ isPro }: Props) {
       toast.error("An unexpected error happened occurred:", error);
     }
   }
-  async function handlePortal(event: FormEvent) {
-    event.preventDefault();
-    setIsLoading(true);
-    try {
-      const res = await fetch("/api/portal", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await res.json();
-      window.location.href = data.url;
-      setIsLoading(false);
-    } catch (error: any) {
-      setIsLoading(false);
-      console.error("An unexpected error happened occurred:", error);
-      toast.error("An unexpected error happened occurred:", error);
-    }
-  }
+
   return (
     <div className="mx-auto max-w-5xl px-4">
       <Label>Email</Label>
@@ -78,13 +60,13 @@ export default function ProfileForm({ isPro }: Props) {
             <p className="text-sm text-muted-foreground">
               Update your billing information. Manage your subscription and
               billing preferences. You are currently on the{" "}
-              {isPro ? "Pro" : "Free"} plan.
+              {/* {isPro ? "Pro" : "Free"} plan. */}
             </p>
           </div>
         </CardContent>
         <CardFooter>
           <div className="flex justify-end">
-            {isPro ? (
+            {/* {isPro ? (
               <Button
                 onClick={(e) => handlePortal(e)}
                 variant={"default"}
@@ -102,7 +84,8 @@ export default function ProfileForm({ isPro }: Props) {
 
                 Subscribe
               </Button>
-            )}
+            )} */}
+          Credits: {credits}
           </div>
         </CardFooter>
       </Card>
