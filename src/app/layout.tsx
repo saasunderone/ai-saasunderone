@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/Theme-Provider";
 import { config } from "../../config";
 import Head from "next/head";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import QueryProvider from "@/components/QueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,6 +39,7 @@ export default function RootLayout({
         <GoogleAnalytics GA_TRACKING_ID={config.googleAnalyticsId} />
       </head>
       <body className={inter.className}>
+        <QueryProvider>
         <Toaster position="top-right" />
         <SessionProviderContext>
           <ThemeProvider
@@ -49,6 +51,7 @@ export default function RootLayout({
             {children}
           </ThemeProvider>
         </SessionProviderContext>
+        </QueryProvider>
       </body>
     </html>
   );
