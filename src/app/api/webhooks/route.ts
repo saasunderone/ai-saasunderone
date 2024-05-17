@@ -38,12 +38,7 @@ export async function POST(req: Request) {
         email: session?.customer_email as string,
       },
       data: {
-        stripeSubscriptionId: subscription.id,
-        stripeCustomerId: subscription.customer as string,
-        stripePriceId: subscription.items.data[0].price.id,
-        stripeCurrentPeriodEnd: new Date(
-          subscription.current_period_end * 1000,
-        ),
+       credits: 100,
       },
     });
   }
@@ -56,17 +51,7 @@ export async function POST(req: Request) {
     console.log(subscription.id);
 
     // Update the price id and set the new period end.
-    await db.user.update({
-      where: {
-        stripeSubscriptionId: subscription.id,
-      },
-      data: {
-        stripePriceId: subscription.items.data[0].price.id,
-        stripeCurrentPeriodEnd: new Date(
-          subscription.current_period_end * 1000,
-        ),
-      },
-    });
+  
   }
   if (event.type === "checkout.session.expired") {
     // If the payment failed, we want to cancel the subscription.
