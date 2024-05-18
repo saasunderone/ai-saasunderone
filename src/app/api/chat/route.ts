@@ -5,7 +5,6 @@ import { db } from "../../../../prisma/db";
 import { getContext } from "@/lib/context";
 
 
-
 const config = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -56,12 +55,6 @@ export async function POST(req: Request) {
     });
     const stream = OpenAIStream(response, {
       onStart: async () => {
-        // save user message into db
-        // await db.insert(_messages).values({
-        //   chatId,
-        //   content: lastMessage.content,
-        //   role: "user",
-        // });
 
         await db.chat.update({
           where: {
@@ -93,13 +86,12 @@ export async function POST(req: Request) {
             },
           },
         });
-      //   await db.insert(_messages).values({
-      //     chatId,
-      //     content: completion,
-      //     role: "system",
-      //   });
+
       },
     });
     return new StreamingTextResponse(stream);
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: "internal server error" }, { status: 500 });
+  }
 }

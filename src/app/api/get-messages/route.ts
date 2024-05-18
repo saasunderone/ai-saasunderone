@@ -16,6 +16,5 @@ export const POST = async (req: Request) => {
             chatId
         },
         });
-        console.log(_messages);
   return NextResponse.json(_messages);
 };
